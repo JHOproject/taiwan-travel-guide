@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
+    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <div v-if="cityList">
-      <select v-model="selected">
+      <select v-model="selected" @change="onSelectChnage">
         <option
           v-for="(item, index) in cityList"
           :key="index"
@@ -14,7 +14,10 @@
       </select>
     </div>
     <div v-for="(item, index) in list" :key="index">
-      {{ item.Name }}
+      <span>{{ item.Name }}</span>
+      <img :src="item.Picture.PictureUrl1" height="80" />
+      <img :src="item.Picture.PictureUrl2" height="80" />
+      <img :src="item.Picture.PictureUrl3" height="80" />
     </div>
   </div>
 </template>
@@ -44,9 +47,17 @@ export default class Home extends Vue {
 
   created() {
     this.selected = this.cityList[0].value
-    AppModule.getCityScenicSpotList(this.selected).then(() => {
+    this.getCityScenicSpotList(this.selected)
+  }
+
+  getCityScenicSpotList(params: string) {
+    AppModule.getCityScenicSpotList(params).then(() => {
       this.list = this.cityScenicSpotMap[this.selected]
     })
+  }
+
+  onSelectChnage() {
+    this.getCityScenicSpotList(this.selected)
   }
 }
 </script>
