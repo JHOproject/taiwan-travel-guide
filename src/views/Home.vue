@@ -28,7 +28,7 @@ import { State } from 'vuex-class'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 import { ISelect } from '@/models/common/Form'
-import { IScenicSpotTourismInfo } from '@/models/tourism'
+import { IScenicSpotTourismRes } from '@/models/TourismDTO'
 import { AppModule } from '@/store/modules'
 import { IMap } from '@/models/common/Map'
 
@@ -40,10 +40,10 @@ import { IMap } from '@/models/common/Map'
 export default class Home extends Vue {
   @State((state) => state.app.cityList) cityList!: ISelect[]
   @State((state) => state.app.cityScenicSpotMap)
-  cityScenicSpotMap!: IMap<IScenicSpotTourismInfo>
+  cityScenicSpotMap!: IMap<IScenicSpotTourismRes>
 
   selected = ''
-  list: IScenicSpotTourismInfo | null = null
+  list: IScenicSpotTourismRes | null = null
 
   created() {
     this.selected = this.cityList[0].value
