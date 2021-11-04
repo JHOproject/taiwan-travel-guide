@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <div v-if="cityList">
       <select v-model="selected" @change="onSelectChnage">
         <option
@@ -27,10 +25,10 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { State } from 'vuex-class'
 import HelloWorld from '@/components/HelloWorld.vue'
 
-import { ISelect } from '@/models/common/Form'
+import { ISelect } from '@/models/common/FormDTO'
 import { IScenicSpotTourismRes } from '@/models/TourismDTO'
-import { AppModule } from '@/store/modules'
-import { IMap } from '@/models/common/Map'
+import { IMap } from '@/models/common/MapDTO'
+import { TourismModule } from '@/store/modules'
 
 @Component({
   components: {
@@ -38,8 +36,8 @@ import { IMap } from '@/models/common/Map'
   },
 })
 export default class Home extends Vue {
-  @State((state) => state.app.cityList) cityList!: ISelect[]
-  @State((state) => state.app.cityScenicSpotMap)
+  @State((state) => state.tourism.cityList) cityList!: ISelect[]
+  @State((state) => state.tourism.cityScenicSpotMap)
   cityScenicSpotMap!: IMap<IScenicSpotTourismRes>
 
   selected = ''
@@ -51,7 +49,8 @@ export default class Home extends Vue {
   }
 
   getCityScenicSpotList(params: string) {
-    AppModule.getCityScenicSpotList(params).then(() => {
+    if (!params) return
+    TourismModule.getCityScenicSpotList(params).then(() => {
       this.list = this.cityScenicSpotMap[this.selected]
     })
   }

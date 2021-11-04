@@ -1,5 +1,5 @@
-import { IPicture } from './common/Picture'
-import { IPosition } from './common/Position'
+import { IPicture } from './common/PictureDTO'
+import { IPosition } from './common/PositionDTO'
 
 /**
  * 觀光景點資料

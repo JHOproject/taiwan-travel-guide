@@ -3,17 +3,17 @@ import store from './index'
 
 import { getCityScenicSpotList } from '@/api/getTourismList'
 import { IScenicSpotTourismRes } from '@/models/TourismDTO'
-import { IResponse } from '@/models/common/Response'
-import { IMap } from '@/models/common/Map'
+import { IResponse } from '@/models/common/ResponseDTO'
+import { IMap } from '@/models/common/MapDTO'
 
 @Module({
   namespaced: true,
   dynamic: true,
   store,
   stateFactory: true,
-  name: 'app',
+  name: 'tourism',
 })
-export default class App extends VuexModule {
+export default class Tourism extends VuexModule {
   cityList = [...require('@/setting/city.json').list]
   cityScenicSpotMap: IMap<IScenicSpotTourismRes> = {}
 

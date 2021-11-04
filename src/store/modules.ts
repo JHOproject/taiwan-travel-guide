@@ -1,6 +1,6 @@
-import { getModule } from 'vuex-module-decorators';
-import App from '@/store/app';
+import { getModule } from 'vuex-module-decorators'
+import Tourism from '@/store/tourism'
 
-const AppModule = getModule(App);
+const TourismModule = getModule(Tourism)
 
-export { AppModule };
+export { TourismModule }
