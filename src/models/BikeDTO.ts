@@ -1,9 +1,6 @@
 /**
  * 公共自行車即時車位資料
  */
-export interface IBikeInfoRes {
-  BikeAvailability: IBikeInfoItem[]
-}
 export interface IBikeInfoItem {
   StationUID?: string // (String, optional): 站點唯一識別代碼，規則為 {業管機關代碼} + {StationID}，其中 {業管機關代碼} 可於Authority API中的AuthorityCode欄位查詢 ,
   StationID?: string // (String, optional): 站點代碼 ,
@@ -18,9 +15,6 @@ export interface IBikeInfoItem {
 /**
  * 自行車道路網圖資料
  */
-export interface IBikeCyclingRes {
-  BikeShape: IBikeCyclingItem[]
-}
 export interface IBikeCyclingItem {
   RouteName: string // (String): 路線名稱 ,
   AuthorityName?: string // (String, optional): 業管機關名稱（可能包含多個業管機關） ,

@@ -4,7 +4,7 @@ import { IPosition } from './common/PositionDTO'
 /**
  * 觀光景點資料
  */
-export interface IScenicSpotTourismRes {
+export interface IScenicSpotTourismItem {
   ID: string // (String) 景點代碼
   Name?: string // (String, optional) 景點名稱
   DescriptionDetail?: string // (String, optional) 景點特色詳細說明
@@ -35,9 +35,6 @@ export interface IScenicSpotTourismRes {
 /**
  * 觀光餐飲資料
  */
-export interface IRestaurantInfoRes {
-  RestaurantTourismInfo: IRestaurantInfoItem[]
-}
 export interface IRestaurantInfoItem {
   ID: string // (String): 餐飲店家代碼 ,
   Name?: string // (String, optional): 餐飲店家名稱 ,
@@ -60,9 +57,6 @@ export interface IRestaurantInfoItem {
 /**
  * 觀光旅宿資料
  */
-export interface IHotelInfoRes {
-  HotelTourismInfo: IHotelInfoItem[]
-}
 export interface IHotelInfoItem {
   ID: string // (String): 旅館民宿代碼 ,
   Name?: string // (String, optional): 旅館民宿名稱 ,
@@ -88,10 +82,6 @@ export interface IHotelInfoItem {
 /**
  * 觀光活動資料
  */
-export interface IActivityInfoRes {
-  ActivityTourismInfo: IActivityInfoItem[]
-}
-
 export interface IActivityInfoItem {
   ID: string // (String): 活動訊息代碼 ,
   Name?: string // (String, optional): 活動名稱 ,

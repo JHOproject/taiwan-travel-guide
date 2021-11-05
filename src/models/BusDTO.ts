@@ -14,9 +14,6 @@ export class BusReqDTO {
 /**
  * 市區公車路線資料
  */
-export interface IBusRouteRes {
-  BusRoute: IBusRouteItem[]
-}
 export interface IBusRouteItem {
   RouteUID: string // (String): 路線唯一識別代碼，規則為 {業管機關簡碼} + {RouteID}，其中 {業管機關簡碼} 可於Authority API中的AuthorityCode欄位查詢 ,
   RouteID: string // (String): 地區既用中之路線代碼(為原資料內碼) ,
@@ -68,9 +65,6 @@ export interface IBusNameTypeItem {
 /**
  * 預估到站資料[批次更新]
  */
-export interface IBusEstimatedTimeRes {
-  BusN1EstimateTime: IBusEstimatedTimeItem[]
-}
 export interface IBusEstimatedTimeItem {
   PlateNumb?: string // (String, optional): 車牌號碼 [値為値為-1時，表示目前該站位無車輛行駛] ,
   StopUID?: string // (String, optional): 站牌唯一識別代碼，規則為 {業管機關簡碼} + {StopID}，其中 {業管機關簡碼} 可於Authority API中的AuthorityCode欄位查詢 ,
