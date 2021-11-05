@@ -47,8 +47,8 @@ export default class Tourism extends Vue {
   created() {
     this.cityList = cityList.list
     this.selected = this.cityList[0].value
-    this.getCityScenicSpotList(this.selected)
-    this.getCityRestaurantList(this.selected)
+    // this.getCityScenicSpotList(this.selected)
+    // this.getCityRestaurantList(this.selected)
   }
 
   getCityScenicSpotList(params: string) {

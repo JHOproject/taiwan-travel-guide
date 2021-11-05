@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-black w-full h-full">
     <div v-for="(item, index) in list" :key="index">
       <span>{{ item.Name }}</span>
       <img :src="item.Picture.PictureUrl1" height="80" />
@@ -10,12 +10,15 @@
 </template>
 
 <script lang="ts">
-import { ISelect } from '@/models/common/FormDTO'
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import {
+  IRestaurantInfoItem,
+  IScenicSpotTourismItem,
+} from '@/models/TourismDTO'
 
 @Component({})
 export default class Card extends Vue {
-  @Prop() readonly list!: ISelect[]
+  @Prop() readonly list!: IScenicSpotTourismItem[] | IRestaurantInfoItem[]
 }
 </script>
 
