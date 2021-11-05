@@ -1,4 +1,12 @@
-import $axios from '@/plugins/axios'
+import { $axios, $linkAxios } from '@/plugins/axios'
+
+/**
+ * 取得縣市資料
+ * @returns
+ */
+export const getCityList = (query: string = '') => {
+  return $linkAxios.get('/v2/Basic/City' + query)
+}
 
 /**
  * 取得所有觀光景點資料

@@ -1,4 +1,4 @@
-import $axios from '@/plugins/axios'
+import { $axios } from '@/plugins/axios'
 
 /**
  * 取得動態指定[縣市]的公共自行車即時車位資料

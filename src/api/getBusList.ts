@@ -1,5 +1,5 @@
 import { BusReqDTO } from '@/models/BusDTO'
-import $axios from '@/plugins/axios'
+import { $axios } from '@/plugins/axios'
 
 /**
  * 取得指定[縣市]的市區公車路線資料

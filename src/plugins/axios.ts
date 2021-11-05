@@ -33,9 +33,10 @@ const getAuthorizationHeader = function (): AuthorizationHeader {
 }
 
 /**
- * 實例請求配置
+ * ptx
  */
-const instance = axios.create({
+const ptxInstance = axios.create({
+  // 實例請求配置
   headers: getAuthorizationHeader(),
 
   // 請求時長
@@ -44,21 +45,15 @@ const instance = axios.create({
   // 請求的base地址
   baseURL: 'https://ptx.transportdata.tw/MOTC',
 })
-
-/**
- * 攔截器
- */
-instance.interceptors.request.use(
+ptxInstance.interceptors.request.use(
+  // 攔截器
   config => {
     return config
   },
   error => Promise.reject(error),
 )
-
-/**
- * 響應攔截器
- */
-instance.interceptors.response.use(
+ptxInstance.interceptors.response.use(
+  // 響應攔截器
   (response: AxiosResponse<any>): Promise<AxiosResponse<any>> => {
     const res = response
     return Promise.resolve(res)
@@ -68,6 +63,31 @@ instance.interceptors.response.use(
   },
 )
 
-const $axios = instance
+/**
+ * link
+ * TODO: 跨域錯誤
+ */
+const linkInstance = axios.create({
+  headers: getAuthorizationHeader(),
+  baseURL: 'https://link.motc.gov.tw',
+})
+linkInstance.interceptors.request.use(
+  config => {
+    return config
+  },
+  error => Promise.reject(error),
+)
+linkInstance.interceptors.response.use(
+  (response: AxiosResponse<any>): Promise<AxiosResponse<any>> => {
+    const res = response
+    return Promise.resolve(res)
+  },
+  (error: any) => {
+    return Promise.reject(error)
+  },
+)
 
-export default $axios
+const $axios = ptxInstance
+const $linkAxios = linkInstance
+
+export { $axios, $linkAxios }
