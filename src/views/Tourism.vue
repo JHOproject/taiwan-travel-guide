@@ -35,11 +35,11 @@ import { TourismModule } from '@/store/modules'
     HelloWorld,
   },
 })
-export default class Home extends Vue {
   @State((state) => state.tourism.cityList) cityList!: ISelect[]
   @State((state) => state.tourism.cityScenicSpotMap)
   cityScenicSpotMap!: IMap<IScenicSpotTourismRes>
 
+export default class Tourism extends Vue {
   selected = ''
   list: IScenicSpotTourismRes | null = null
 
