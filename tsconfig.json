@@ -10,11 +10,13 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
     "sourceMap": true,
     "baseUrl": ".",
     "types": ["webpack-env"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "~/*": ["./*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

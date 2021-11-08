@@ -1,23 +1,42 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Tourism from '../views/Tourism.vue'
+import OverView from '../views/OverView.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Tourism',
-    component: Tourism,
+    name: 'OverView',
+    component: OverView,
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/scenicSpot',
+    name: 'ScenicSpot',
+    // component: ScenicSpot,
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/ScenicSpot.vue'),
+  },
+  {
+    path: '/restaurant',
+    name: 'Restaurant',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+      import(/* webpackChunkName: "about" */ '../views/Restaurant.vue'),
+  },
+  {
+    path: '/hotel',
+    name: 'Hotel',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Hotel.vue'),
+  },
+  {
+    path: '/activity',
+    name: 'Activity',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Activity.vue'),
   },
 ]
 
