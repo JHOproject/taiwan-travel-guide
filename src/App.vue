@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Tourism</router-link> | -->
-      <!-- <router-link to="/about">About</router-link> -->
-    </div>
+    <Header></Header>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import Header from '@/components/utils/Header.vue'
+
+@Component({
+  components: { Header },
+})
+export default class OverView extends Vue {}
+</script>
 
 <style lang="sass"></style>
