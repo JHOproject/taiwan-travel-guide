@@ -4,7 +4,7 @@ import { IPosition } from './common/PositionDTO'
 /**
  * 觀光景點資料
  */
-export interface IScenicSpotTourismItem {
+export interface IScenicSpotInfoItem {
   ID: string // (String) 景點代碼
   Name?: string // (String, optional) 景點名稱
   DescriptionDetail?: string // (String, optional) 景點特色詳細說明
