@@ -5,10 +5,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
+      sans: ["Graphik", "sans-serif"],
+      serif: ["Merriweather", "serif"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {},
+    },
   },
   variants: {
     extend: {},
