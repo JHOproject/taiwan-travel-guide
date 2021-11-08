@@ -1,11 +1,17 @@
 module.exports = {
-  purge: [],
+  purge: [
+    // './index.html', './src/**/*.{vue,js,ts,jsx,tsx}'
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      sans: ['Graphik', 'sans-serif'],
+      serif: ['Merriweather', 'serif'],
+    },
     extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [require('tailwindcss')('tailwind.js'), require('autoprefixer')()],
+  plugins: [],
 }
