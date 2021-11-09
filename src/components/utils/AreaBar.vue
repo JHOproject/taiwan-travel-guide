@@ -1,6 +1,11 @@
 <template>
-  <div class="container mx-auto flex space-x-10">
-    <p class="text-2xl font-bold">縣市快選</p>
+  <div class="barGroup">
+    <img
+      src="@/assets/img/utils/back_packer.png"
+      alt="背包客"
+      class="w-36 h-36 absolute left-10 bottom-3"
+    />
+    <TitleBar title="縣市快選" subTitle="Choose Cities"></TitleBar>
     <AreaBtn
       v-for="item in list"
       :key="item.key"
@@ -13,9 +18,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import AreaBtn from '@/components/common/AreaBtn.vue'
+import TitleBar from '@/components/utils/TitleBar.vue'
 
 @Component({
-  components: { AreaBtn },
+  components: { AreaBtn, TitleBar },
 })
 export default class AreaBar extends Vue {
   list = [
@@ -31,3 +37,21 @@ export default class AreaBar extends Vue {
   ]
 }
 </script>
+
+<style scoped>
+.barGroup {
+  @apply container mx-auto flex justify-center items-center space-x-8 h-72 relative;
+}
+.barGroup::after {
+  content: '';
+  display: inline-block;
+  margin-left: -100px;
+  width: 1150px;
+  height: 100%;
+  background: #f7f7f7;
+  border-radius: 0px 0px 136px 0px;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+</style>

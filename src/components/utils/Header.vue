@@ -31,10 +31,11 @@ export default class Header extends Vue {}
 
 <style scope>
 .navGroup {
-  @apply flex justify-between items-center w-full h-24 px-10  sticky top-0 z-10 bg-white;
+  @apply flex justify-between items-center w-full h-24 px-10  bg-white bg-opacity-75 relative top-0 z-10;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 .searchGroup {
-  @apply flex justify-center items-center w-40 h-8 relative z-20 rounded-full bg-gray-100;
+  @apply flex justify-center items-center w-40 h-8 rounded-full bg-gray-100 relative z-20;
 }
 .btnGroup {
   @apply flex justify-center w-full h-24 items-center space-x-8 absolute top-0 left-0;

@@ -10,15 +10,15 @@
           {{ item.text }}
         </option>
       </select>
-      <InfoCard :list="scenicSpotList"></InfoCard>
-      <InfoCard :list="restaurantList"></InfoCard>
+      <!-- <InfoCard :list="scenicSpotList"></InfoCard>
+      <InfoCard :list="restaurantList"></InfoCard> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import InfoCard from '@/components/common/InfoCard.vue'
+// import InfoCard from '@/components/common/InfoCard.vue'
 
 import {
   getCityRestaurantList,
@@ -32,7 +32,7 @@ const cityList = require('@/setting/city.json')
 
 @Component({
   components: {
-    InfoCard,
+    // InfoCard,
   },
 })
 export default class ScenicSpot extends Vue {
