@@ -5,12 +5,19 @@
       alt="背包客"
       class="w-36 h-36 absolute left-10 bottom-3"
     />
-    <TitleBar title="縣市快選" subTitle="Choose Cities"></TitleBar>
+    <TitleBar
+      title="縣市快選"
+      subTitle="Choose Cities"
+      class="mr-16"
+    ></TitleBar>
     <AreaBtn
       v-for="item in list"
       :key="item.key"
       :src="item.src"
       :alt="item.alt"
+      :class="{ active: item.key === active }"
+      class="mr-10"
+      @click.native="$emit('onClick', item.key)"
     ></AreaBtn>
   </div>
 </template>
@@ -24,6 +31,8 @@ import TitleBar from '@/components/utils/TitleBar.vue'
   components: { AreaBtn, TitleBar },
 })
 export default class AreaBar extends Vue {
+  @Prop() active!: string
+
   list = [
     { key: 'north', src: require('@/assets/img/utils/north.png'), alt: '北部' },
     { key: 'mid', src: require('@/assets/img/utils/mid.png'), alt: '中部' },
@@ -40,13 +49,13 @@ export default class AreaBar extends Vue {
 
 <style scoped>
 .barGroup {
-  @apply container mx-auto flex justify-center items-center space-x-8 h-72 relative;
+  @apply container mx-auto flex justify-center items-center h-72 relative;
 }
 .barGroup::after {
   content: '';
   display: inline-block;
   margin-left: -100px;
-  width: 1150px;
+  width: 88%;
   height: 100%;
   background: #f7f7f7;
   border-radius: 0px 0px 136px 0px;

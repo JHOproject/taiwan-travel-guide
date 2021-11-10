@@ -21,6 +21,9 @@ export default class AreaBtn extends Vue {
 
 <style scoped>
 .buttonGroup {
-  @apply flex flex-col justify-center items-center w-28 h-36 pt-5 bg-white rounded-2xl shadow-xl cursor-pointer;
+  @apply flex flex-col justify-center items-center w-28 h-36 pt-5 bg-white rounded-2xl shadow-xl cursor-pointer transition duration-300 ease-in-out hover:bg-dark  hover:text-white;
+}
+.buttonGroup.active {
+  @apply bg-dark text-white;
 }
 </style>

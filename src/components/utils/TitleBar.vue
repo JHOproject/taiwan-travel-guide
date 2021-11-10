@@ -1,6 +1,6 @@
 <template>
-  <div class="textGroup">
-    <p class="text-3xl font-bold whitespace-pre-wrap" v-html="title"></p>
+  <div :class="className">
+    <p class="mb-2 text-3xl font-bold whitespace-pre-wrap" v-html="title"></p>
     <p class="text-base text-gray-400">{{ subTitle }}</p>
   </div>
 </template>
@@ -12,13 +12,11 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   components: {},
 })
 export default class TitleBar extends Vue {
+  @Prop({ default: '' }) readonly className?: string
   @Prop() readonly title!: string
   @Prop() readonly subTitle!: string
 }
 </script>
 
 <style scoped>
-.textGroup {
-  @apply mr-12 !important;
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <span class="py-2 px-4 rounded-full text-xs font-bold" :class="className">{{
-    text
+    text || '暫無分類'
   }}</span>
 </template>
 

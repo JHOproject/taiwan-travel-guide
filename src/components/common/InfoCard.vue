@@ -1,19 +1,28 @@
 <template>
-  <div class="w-64 rounded-xl overflow-hidden">
-    <!-- <div v-for="(item, index) in list" :key="index">
-      <span>{{ item.Name }}</span>
-      <img :src="item.Picture.PictureUrl1" height="80" />
-    </div> -->
-    <div class="h-48 bg-gray-100">
-      <img src="" alt="" />
+  <div v-if="item" class="infoCardGroup">
+    <div class="h-48 bg-gray-100 relative overflow-hidden">
+      <img
+        :src="item.Picture.PictureUrl1"
+        :alt="item.Picture.PictureDescription1"
+        class="w-full min-h-full max-w-none fitImg"
+      />
     </div>
     <div class="py-4 px-4">
-      <p class="font-bold">2021大溪豆干節</p>
-      <p class="text-xs text-gray-400">花蓮縣壽豐鄉鹽寮村6鄰福德49-2號</p>
+      <p class="font-bold">
+        {{ item.Name.length > 10 ? item.Name.slice(0, 9) + '...' : item.Name }}
+      </p>
+      <p class="text-xs text-gray-400">
+        {{
+          description.length > 30
+            ? description.slice(0, 29) + ' ...'
+            : description
+        }}
+      </p>
     </div>
-    <div class="flex px-4 pb-4 justify-between items-center">
-      <Chip text="年度"></Chip>
-      <span class="text-sm text-blue font-bold">桃園市</span>
+    <div class="flex justify-between items-center px-4 pb-4">
+      <Chip :text="classify"></Chip>
+      <Chip v-if="subClassify" :text="subClassify"></Chip>
+      <span class="text-sm text-blue font-bold">{{ item.City }}</span>
     </div>
   </div>
 </template>    
@@ -22,14 +31,20 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import Chip from '@/components/common/Chip.vue'
 
-import { IRestaurantInfoItem, IScenicSpotInfoItem } from '@/models/TourismDTO'
+import { IScenicSpotInfoItem } from '@/models/TourismDTO'
 
 @Component({ components: { Chip } })
 export default class InfoCard extends Vue {
-  @Prop() readonly list!: IScenicSpotInfoItem[] | IRestaurantInfoItem[]
+  @Prop() readonly item!: IScenicSpotInfoItem
+  @Prop() readonly description!: string
+  @Prop() readonly classify!: string
+  @Prop({ default: '' }) readonly subClassify?: string
 }
 </script>
 
-<style lang="sass" scoped>
+<style scoped>
+.infoCardGroup {
+  @apply w-64 rounded-xl shadow-xl opacity-80 overflow-hidden cursor-pointer transition duration-300 ease-in-out hover:opacity-100;
+}
 </style>
 
