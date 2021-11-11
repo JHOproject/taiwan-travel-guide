@@ -7,22 +7,26 @@
         class="inline-block w-full min-h-full max-w-none"
       />
     </div>
-    <div class="py-4 px-4">
-      <p class="font-bold">
-        {{ item.Name.length > 10 ? item.Name.slice(0, 9) + '...' : item.Name }}
-      </p>
-      <p class="text-xs text-gray-400">
-        {{
-          description.length > 30
-            ? description.slice(0, 29) + ' ...'
-            : description
-        }}
-      </p>
-    </div>
-    <div class="flex justify-between items-center px-4 pb-4">
-      <Chip :text="classify"></Chip>
-      <Chip v-if="subClassify" :text="subClassify"></Chip>
-      <span class="text-sm text-blue font-bold">{{ item.City }}</span>
+    <div class="h-36 flex flex-col justify-between py-4 px-4">
+      <div>
+        <p class="font-bold">
+          {{
+            item.Name.length > 12 ? item.Name.slice(0, 11) + '...' : item.Name
+          }}
+        </p>
+        <p class="text-xs text-gray-400">
+          {{
+            description.length > 30
+              ? description.slice(0, 29) + ' ...'
+              : description
+          }}
+        </p>
+      </div>
+      <div class="flex justify-between items-center">
+        <Chip :text="classify"></Chip>
+        <Chip v-if="subClassify" :text="subClassify"></Chip>
+        <span class="text-sm text-blue font-bold">{{ item.City }}</span>
+      </div>
     </div>
   </div>
 </template>    
