@@ -1,7 +1,7 @@
 <template>
   <div class="navGroup">
     <div
-      class="flex w-40 h-10 relative z-20"
+      class="flex w-40 h-10 relative z-20 cursor-pointer"
       @click="$router.push({ path: '/' })"
     >
       <img src="@/assets/img/utils/logo.png" alt="logo" />
