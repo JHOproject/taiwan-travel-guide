@@ -10,7 +10,7 @@
       subTitle="Choose Cities"
       class="mr-16"
     ></TitleBar>
-    <AreaBar :active="active" :cityList="list" @onClick="onClick"></AreaBar>
+    <AreaBar :city="city" @onAreaChange="onAreaChange"></AreaBar>
   </div>
 </template>
 
@@ -18,17 +18,17 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import TitleBar from '@/components/utils/TitleBar.vue'
 import AreaBar from '@/components/utils/AreaBar.vue'
-import { ISelect } from '@/models/common/FormDTO'
 
 @Component({
   components: { TitleBar, AreaBar },
 })
-export default class AreaBlock extends Vue {
-  @Prop() active!: string
-  @Prop() list!: ISelect[]
+export default class OverviewAreaBlock extends Vue {
+  get city(): string {
+    return <string>this.$route.query.city || ''
+  }
 
-  onClick(key: string) {
-    this.$emit('onClick', key)
+  onAreaChange({ area }: { area: string }) {
+    this.$emit('onAreaChange', area)
   }
 }
 </script>

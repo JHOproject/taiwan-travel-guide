@@ -42,7 +42,7 @@ import { IScenicSpotInfoItem } from '@/models/TourismDTO'
 @Component({
   components: { TitleBar, InfoCard, Chip },
 })
-export default class ScenicBlock extends Vue {
-  @Prop({ default: [] }) list!: IScenicSpotInfoItem[]
+export default class OverviewScenicBlock extends Vue {
+  @Prop() list!: IScenicSpotInfoItem[]
 }
 </script>

@@ -61,8 +61,8 @@ import { IRestaurantInfoItem } from '@/models/TourismDTO'
 @Component({
   components: { TitleBar, ImageCard, Chip, RoundedBtn },
 })
-export default class FoodBlock extends Vue {
-  @Prop({ default: [] }) list!: IRestaurantInfoItem[]
+export default class OverviewFoodBlock extends Vue {
+  @Prop() list!: IRestaurantInfoItem[]
   translateX = 0
 
   slideTo(director: number) {

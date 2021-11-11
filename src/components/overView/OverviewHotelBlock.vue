@@ -37,8 +37,8 @@ import { IActivityInfoItem } from '@/models/TourismDTO'
 @Component({
   components: { TitleBar, InfoCard, Chip },
 })
-export default class HotelBlock extends Vue {
-  @Prop({ default: [] }) list!: IActivityInfoItem[]
+export default class OverviewHotelBlock extends Vue {
+  @Prop() list!: IActivityInfoItem[]
 }
 </script>
 
