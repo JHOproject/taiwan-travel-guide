@@ -24,12 +24,12 @@
       { "value": "Kaohsiung", "text": "高雄市" }
     ],
     "east": [
-      { "value": "TaitungCounty", "text": "臺東縣" },
-      { "value": "KinmenCounty", "text": "金門縣" }
+      { "value": "HualienCounty", "text": "花蓮縣" },
+      { "value": "TaitungCounty", "text": "臺東縣" }
     ],
     "island": [
-      { "value": "KinmenCounty", "text": "金門縣" },
       { "value": "PenghuCounty", "text": "澎湖縣" },
+      { "value": "KinmenCounty", "text": "金門縣" },
       { "value": "LienchiangCounty", "text": "連江縣" }
     ]
   },
@@ -53,8 +53,8 @@
     { "value": "Kaohsiung", "text": "高雄市" },
     { "value": "HualienCounty", "text": "花蓮縣" },
     { "value": "TaitungCounty", "text": "臺東縣" },
-    { "value": "KinmenCounty", "text": "金門縣" },
     { "value": "PenghuCounty", "text": "澎湖縣" },
+    { "value": "KinmenCounty", "text": "金門縣" },
     { "value": "LienchiangCounty", "text": "連江縣" }
   ]
 }
