@@ -27,6 +27,11 @@
     ></QuickpickActivityBlock>
 
     <QuickpickFoodBlock :city="city" :cityName="cityName"></QuickpickFoodBlock>
+
+    <QuickpickHotelBlock
+      :city="city"
+      :cityName="cityName"
+    ></QuickpickHotelBlock>
   </div>
 </template>
 
@@ -40,6 +45,7 @@ import RoundedBtn from '@/components/common/RoundedBtn.vue'
 import QuickpickScenicBlock from '@/components/QuickPick/QuickpickScenicBlock.vue'
 import QuickpickActivityBlock from '@/components/QuickPick/QuickpickActivityBlock.vue'
 import QuickpickFoodBlock from '@/components/QuickPick/QuickpickFoodBlock.vue'
+import QuickpickHotelBlock from '@/components/QuickPick/QuickpickHotelBlock.vue'
 
 import { ISelect } from '@/models/common/FormDTO'
 
@@ -54,6 +60,7 @@ const cityData = require('@/setting/city.json')
     QuickpickScenicBlock,
     QuickpickActivityBlock,
     QuickpickFoodBlock,
+    QuickpickHotelBlock,
   },
 })
 export default class QuickPick extends Vue {
