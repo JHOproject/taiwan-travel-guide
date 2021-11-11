@@ -27,7 +27,7 @@ module.exports = {
     gradientColorStops: theme => ({
       ...theme('colors'),
       viridity: '#78e389',
-      turquoise: '#1eb893',
+      turquoise: '#1EB893',
     }),
     extend: {
       backgroundColor: theme => ({
@@ -45,13 +45,17 @@ module.exports = {
       },
       textColor: {
         blue: '#0085FF',
+        dark: '#333333',
+        turquoise: '#1EB893',
         'light-grey': '#B2B2B2',
         'deep-grey': '#868686',
+        'deep-dark': '#1F1F1F',
       },
       spacing: {
         200: '200%',
         300: '300%',
         400: '400%',
+        144: '42rem',
       },
     },
   },
