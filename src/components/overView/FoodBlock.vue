@@ -9,7 +9,9 @@
 
       <Chip
         text="更多美味"
-        className="ml-10 bg-gradient-green text-white"
+        class="ml-10 text-white cursor-pointer"
+        bgColor="bg-gradient-green"
+        @click.native="$router.push('/Restaurant')"
       ></Chip>
     </div>
     <div class="w-4/6 h-72 overflow-hidden">
@@ -76,6 +78,11 @@ export default class FoodBlock extends Vue {
     ;(<any>(
       this.$refs.ImageCardSlider
     )).style.transform = `translateX(${this.translateX}px)`
+  }
+
+  init() {
+    this.translateX = 0
+    this.slideTo(0)
   }
 }
 </script>

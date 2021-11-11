@@ -14,11 +14,14 @@
         :key="index"
         :class="{ 'transform translate-y-4': index % 2 !== 0 }"
         class="mx-3"
+        bgColor="bg-gray-200"
       ></InfoCard>
     </div>
     <Chip
       text="更多住宿"
-      className="self-center ml-10 bg-gradient-green text-white"
+      class="self-center ml-10 text-white"
+      bgColor="bg-gradient-green"
+      @click.native="$router.push('/Hotel')"
     ></Chip>
   </div>
 </template>

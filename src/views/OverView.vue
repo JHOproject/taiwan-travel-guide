@@ -12,22 +12,26 @@
       </div>
     </div>
 
-    <AreaBar :active="active" @onClick="onClickArea"></AreaBar>
-
-    <ScenicBlock :list="scenicSpotList.slice(0, 3)"></ScenicBlock>
-    <ActivityBlock :list="activityList.slice(0, 3)"></ActivityBlock>
-    <FoodBlock :list="activityList.slice(0, 16)"></FoodBlock>
-    <HotelBlock :list="hotelList.slice(0, 4)"></HotelBlock>
+    <AreaBlock
+      :active="active"
+      :list="cityList"
+      @onClick="onClickArea"
+    ></AreaBlock>
+    <ScenicBlock :list="scenicSpotList"></ScenicBlock>
+    <ActivityBlock :list="activityList"></ActivityBlock>
+    <FoodBlock :list="restaurantList" ref="FoodBlock"></FoodBlock>
+    <HotelBlock :list="hotelList"></HotelBlock>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import AreaBar from '@/components/utils/AreaBar.vue'
+import AreaBlock from '@/components/overView/AreaBlock.vue'
 import ScenicBlock from '@/components/overView/ScenicBlock.vue'
 import ActivityBlock from '@/components/overView/ActivityBlock.vue'
 import FoodBlock from '@/components/overView/FoodBlock.vue'
 import HotelBlock from '@/components/overView/HotelBlock.vue'
+
 import {
   getCityActivityList,
   getCityHotelList,
@@ -41,13 +45,13 @@ import {
   IScenicSpotInfoItem,
 } from '@/models/TourismDTO'
 import { IResponse } from '@/models/common/ResponseDTO'
-import { IMap } from '@/models/common/MapDTO'
+import { ISelect } from '@/models/common/FormDTO'
 
 const cityData = require('@/setting/city.json')
 
 @Component({
   components: {
-    AreaBar,
+    AreaBlock,
     ScenicBlock,
     ActivityBlock,
     FoodBlock,
@@ -56,7 +60,7 @@ const cityData = require('@/setting/city.json')
 })
 export default class OverView extends Vue {
   active = 'north'
-  city: IMap<IMap<string>> | null = null
+  cityList: ISelect[] = []
 
   scenicSpotIndex = 0
   restaurantIndex = 0
@@ -70,34 +74,38 @@ export default class OverView extends Vue {
 
   @Watch('active')
   activeChange(val: string) {
-    this.city = cityData.levelData[val]
+    this.cityList = cityData.levelData[val]
     this.getData(true)
   }
 
   mounted() {
-    this.city = cityData.levelData[this.active]
+    this.cityList = cityData.levelData[this.active]
     this.getData()
   }
 
   getCityScenicSpotList(params: string, reset = false) {
     if (!params) return
-    reset && (this.scenicSpotList = [])
 
+    reset && (this.scenicSpotList = [])
     getCityScenicSpotList(params)
       .then(({ status, data }: IResponse<IScenicSpotInfoItem[]>) => {
         if (status === 200) {
-          this.scenicSpotList = this.scenicSpotList.concat(
-            data
-              .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
-              .slice(0, 5),
-          )
+          this.scenicSpotList = this.scenicSpotList
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 3),
+            )
+            .slice(0, 3)
           this.scenicSpotIndex += 1
 
           setTimeout(() => {
-            if (!this.city) return
-            this.scenicSpotList.length < 6 &&
-              this.city[this.scenicSpotIndex] &&
-              this.getCityScenicSpotList(this.city[this.scenicSpotIndex].value)
+            if (!this.cityList) return
+            this.scenicSpotList.length < 3 &&
+              this.cityList[this.scenicSpotIndex] &&
+              this.getCityScenicSpotList(
+                this.cityList[this.scenicSpotIndex].value,
+              )
           })
         } else {
           console.log(data)
@@ -110,21 +118,27 @@ export default class OverView extends Vue {
 
   getCityRestaurantList(params: string, reset = false) {
     if (!params) return
-    reset && (this.restaurantList = [])
 
+    reset && (this.restaurantList = [])
     getCityRestaurantList(params)
       .then(({ status, data }: IResponse<IRestaurantInfoItem[]>) => {
         if (status === 200) {
-          this.restaurantList = this.restaurantList.concat(
-            data.filter((x) => !!x.Picture && !!x.Picture.PictureUrl1),
-          )
+          this.restaurantList = this.restaurantList
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 16),
+            )
+            .slice(0, 16)
           this.restaurantIndex += 1
 
           setTimeout(() => {
-            if (!this.city) return
-            this.restaurantList.length < 20 &&
-              this.city[this.restaurantIndex] &&
-              this.getCityRestaurantList(this.city[this.restaurantIndex].value)
+            if (!this.cityList) return
+            this.restaurantList.length < 16 &&
+              this.cityList[this.restaurantIndex] &&
+              this.getCityRestaurantList(
+                this.cityList[this.restaurantIndex].value,
+              )
           })
         } else {
           console.log(data)
@@ -137,21 +151,25 @@ export default class OverView extends Vue {
 
   getCityHotelList(params: string, reset = false) {
     if (!params) return
-    reset && (this.hotelList = [])
 
+    reset && (this.hotelList = [])
     getCityHotelList(params)
       .then(({ status, data }: IResponse<IHotelInfoItem[]>) => {
         if (status === 200) {
-          this.hotelList = this.hotelList.concat(
-            data.filter((x) => !!x.Picture && !!x.Picture.PictureUrl1),
-          )
+          this.hotelList = this.hotelList
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 4),
+            )
+            .slice(0, 4)
           this.hotelIndex += 1
 
           setTimeout(() => {
-            if (!this.city) return
+            if (!this.cityList) return
             this.hotelList.length < 4 &&
-              this.city[this.hotelIndex] &&
-              this.getCityHotelList(this.city[this.hotelIndex].value)
+              this.cityList[this.hotelIndex] &&
+              this.getCityHotelList(this.cityList[this.hotelIndex].value)
           })
         } else {
           console.log(data)
@@ -164,21 +182,25 @@ export default class OverView extends Vue {
 
   getCityActivityList(params: string, reset = false) {
     if (!params) return
-    reset && (this.activityList = [])
 
+    reset && (this.activityList = [])
     getCityActivityList(params)
       .then(({ status, data }: IResponse<IActivityInfoItem[]>) => {
         if (status === 200) {
-          this.activityList = this.activityList.concat(
-            data.filter((x) => !!x.Picture && !!x.Picture.PictureUrl1),
-          )
+          this.activityList = this.activityList
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 4),
+            )
+            .slice(0, 4)
           this.activityIndex += 1
 
           setTimeout(() => {
-            if (!this.city) return
+            if (!this.cityList) return
             this.activityList.length < 4 &&
-              this.city[this.activityIndex] &&
-              this.getCityHotelList(this.city[this.activityIndex].value)
+              this.cityList[this.activityIndex] &&
+              this.getCityHotelList(this.cityList[this.activityIndex].value)
           })
         } else {
           console.log(data)
@@ -193,20 +215,30 @@ export default class OverView extends Vue {
     reset && this.initIndex()
 
     setTimeout(() => {
-      if (!this.city) return
-      this.city[this.scenicSpotIndex] &&
-        this.getCityScenicSpotList(this.city[this.scenicSpotIndex].value, reset)
-      this.city[this.restaurantIndex] &&
-        this.getCityRestaurantList(this.city[this.restaurantIndex].value, reset)
-      this.city[this.hotelIndex] &&
-        this.getCityHotelList(this.city[this.hotelIndex].value, reset)
-      this.city[this.activityIndex] &&
-        this.getCityActivityList(this.city[this.activityIndex].value, reset)
+      if (!this.cityList) return
+      this.cityList[this.scenicSpotIndex] &&
+        this.getCityScenicSpotList(
+          this.cityList[this.scenicSpotIndex].value,
+          reset,
+        )
+
+      this.cityList[this.restaurantIndex] &&
+        this.getCityRestaurantList(
+          this.cityList[this.restaurantIndex].value,
+          reset,
+        )
+
+      this.cityList[this.hotelIndex] &&
+        this.getCityHotelList(this.cityList[this.hotelIndex].value, reset)
+
+      this.cityList[this.activityIndex] &&
+        this.getCityActivityList(this.cityList[this.activityIndex].value, reset)
     })
   }
 
   onClickArea(key: string) {
     this.active = key
+    ;(<FoodBlock>this.$refs.FoodBlock).init()
   }
 
   initIndex() {

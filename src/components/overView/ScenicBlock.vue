@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex justify-center mx-auto mt-32 mb-8">
+  <div class="container flex justify-center mx-auto mt-32 mb-2">
     <InfoCard
       v-for="(item, index) in list"
       :item="item"
@@ -17,13 +17,15 @@
 
       <Chip
         text="更多景點"
-        class="self-start mb-5"
-        className="bg-gradient-green text-white ml-10"
+        class="mb-5 ml-10 text-white"
+        bgColor="bg-gradient-green"
+        @click.native="$router.push('/ScenicSpot')"
       ></Chip>
       <Chip
         text="更多 FUNNY"
-        class="self-start"
-        className="bg-gradient-green text-white ml-10"
+        class="ml-10 text-white"
+        bgColor="bg-gradient-green"
+        @click.native="$router.push('/Activity')"
       ></Chip>
     </div>
   </div>

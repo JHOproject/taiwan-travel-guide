@@ -15,10 +15,7 @@
         <p class="text-xs text-white">
           {{ item.Class || '暫無分類' }}
         </p>
-        <Chip
-          :text="item.City"
-          className="self-start bg-black text-white "
-        ></Chip>
+        <Chip :text="item.City" class="text-white" bgColor="bg-black"></Chip>
       </div>
     </div>
   </div>
