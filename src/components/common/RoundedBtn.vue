@@ -31,6 +31,6 @@ export default class RoundedBtn extends Vue {
 
 /* Ellipse 47 */
 .btnWrap {
-  @apply flex justify-center items-center self-start inline-block w-16 h-16 rounded-full shadow-xl transform transition duration-300 ease-in-out hover:scale-125;
+  @apply flex justify-center items-center self-start inline-block w-16 h-16 rounded-full shadow-xl z-10 transform transition duration-300 ease-in-out hover:scale-125;
 }
 </style>

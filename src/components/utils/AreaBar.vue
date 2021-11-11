@@ -7,10 +7,14 @@
       :alt="item.alt"
       :class="{ active: item.key === active }"
       class="mr-10"
-      @click.native="$emit('onClick', item.key)"
+      @click.native="onAreaChange(item.key)"
     ></AreaBtn>
 
-    <AreaSubBtn :list="cityList" :active="active"></AreaSubBtn>
+    <AreaSubBtn
+      :list="cityList"
+      :active="active"
+      @onClick="onCityChange"
+    ></AreaSubBtn>
   </div>
 </template>
 
@@ -21,6 +25,8 @@ import AreaSubBtn from '@/components/common/AreaSubBtn.vue'
 import TitleBar from '@/components/utils/TitleBar.vue'
 import { ISelect } from '@/models/common/FormDTO'
 
+const cityData = require('@/setting/city.json')
+
 @Component({
   components: {
     AreaBtn,
@@ -29,8 +35,8 @@ import { ISelect } from '@/models/common/FormDTO'
   },
 })
 export default class AreaBar extends Vue {
-  @Prop() active!: string
-  @Prop() cityList?: ISelect[]
+  active = ''
+  cityList: ISelect[] = []
 
   imgList = [
     { key: 'north', src: require('@/assets/img/utils/north.png'), alt: '北部' },
@@ -43,6 +49,36 @@ export default class AreaBar extends Vue {
       alt: '離島',
     },
   ]
+
+  get isOnHomePage() {
+    return this.$route.name === 'OverView'
+  }
+
+  mounted() {
+    this.active = <string>this.$route.query.area || 'north'
+    this.cityList = cityData.levelData[this.active]
+  }
+
+  onAreaChange(key: string) {
+    if (this.active === key) return
+
+    this.active = key
+    this.cityList = cityData.levelData[key]
+    if (this.isOnHomePage) {
+      this.$router.push({ query: { area: key } })
+    } else {
+      this.$router.push({ query: { area: key, city: this.cityList[0]?.value } })
+    }
+
+    this.$emit('onAreaChange', { area: key, text: this.cityList[0].text })
+  }
+
+  onCityChange(item: ISelect) {
+    if (this.$route.query.city === item.value) return
+
+    this.$router.push(`/QuickPick?area=${this.active}&city=${item.value}`)
+    this.$emit('onCityChange', item.text)
+  }
 }
 </script>
 

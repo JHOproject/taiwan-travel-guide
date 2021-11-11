@@ -4,12 +4,10 @@
       v-for="(item, index) in list"
       :key="index"
       :text="item.text"
-      :class="{ active: item.value === $route.query.city }"
+      :class="{ active: needActiveSet && item.value === $route.query.city }"
       class="text-base text-dark hover:bg-dark hover:text-white mx-1"
       bgColor="bg-none"
-      @click.native="
-        $router.push(`/QuickPick?area=${active}&city=${item.value}`)
-      "
+      @click.native="$emit('onClick', item)"
     ></Chip>
   </div>
 </template>
@@ -25,6 +23,10 @@ import { ISelect } from '@/models/common/FormDTO'
 export default class AreaSubBtn extends Vue {
   @Prop() list!: ISelect[]
   @Prop() active!: string
+
+  get needActiveSet() {
+    return this.$route.name !== 'OverView'
+  }
 }
 </script>
 

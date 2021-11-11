@@ -12,25 +12,24 @@
       </div>
     </div>
 
-    <AreaBlock
-      :active="active"
-      :list="cityList"
-      @onClick="onClickArea"
-    ></AreaBlock>
-    <ScenicBlock :list="scenicSpotList"></ScenicBlock>
-    <ActivityBlock :list="activityList"></ActivityBlock>
-    <FoodBlock :list="restaurantList" ref="FoodBlock"></FoodBlock>
-    <HotelBlock :list="hotelList"></HotelBlock>
+    <OverviewAreaBlock @onAreaChange="onAreaChange"></OverviewAreaBlock>
+    <OverviewScenicBlock :list="scenicSpotList"></OverviewScenicBlock>
+    <OverviewActivityBlock :list="activityList"></OverviewActivityBlock>
+    <OverviewFoodBlock
+      :list="restaurantList"
+      ref="OverviewFoodBlock"
+    ></OverviewFoodBlock>
+    <OverviewHotelBlock :list="hotelList"></OverviewHotelBlock>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import AreaBlock from '@/components/overView/AreaBlock.vue'
-import ScenicBlock from '@/components/overView/ScenicBlock.vue'
-import ActivityBlock from '@/components/overView/ActivityBlock.vue'
-import FoodBlock from '@/components/overView/FoodBlock.vue'
-import HotelBlock from '@/components/overView/HotelBlock.vue'
+import OverviewAreaBlock from '@/components/overView/OverviewAreaBlock.vue'
+import OverviewScenicBlock from '@/components/overView/OverviewScenicBlock.vue'
+import OverviewActivityBlock from '@/components/overView/OverviewActivityBlock.vue'
+import OverviewFoodBlock from '@/components/overView/OverviewFoodBlock.vue'
+import OverviewHotelBlock from '@/components/overView/OverviewHotelBlock.vue'
 
 import {
   getCityActivityList,
@@ -51,11 +50,11 @@ const cityData = require('@/setting/city.json')
 
 @Component({
   components: {
-    AreaBlock,
-    ScenicBlock,
-    ActivityBlock,
-    FoodBlock,
-    HotelBlock,
+    OverviewAreaBlock,
+    OverviewScenicBlock,
+    OverviewActivityBlock,
+    OverviewFoodBlock,
+    OverviewHotelBlock,
   },
 })
 export default class OverView extends Vue {
@@ -72,10 +71,9 @@ export default class OverView extends Vue {
   hotelList: IHotelInfoItem[] = []
   activityList: IActivityInfoItem[] = []
 
-  @Watch('active')
-  activeChange(val: string) {
-    this.cityList = cityData.levelData[val]
-    this.getData(true)
+  created() {
+    !this.$route.query.area &&
+      this.$router.push({ query: { area: this.active } })
   }
 
   mounted() {
@@ -236,9 +234,11 @@ export default class OverView extends Vue {
     })
   }
 
-  onClickArea(key: string) {
-    this.active = key
-    ;(<FoodBlock>this.$refs.FoodBlock).init()
+  onAreaChange(area: string) {
+    this.active = area
+    this.cityList = cityData.levelData[area]
+    this.getData(true)
+    ;(<OverviewFoodBlock>this.$refs.OverviewFoodBlock).init()
   }
 
   initIndex() {
