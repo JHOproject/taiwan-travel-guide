@@ -39,6 +39,6 @@ export default class ImageCard extends Vue {
 
 <style scoped>
 .imageCardGroup {
-  @apply w-56 h-72 rounded-xl shadow-xl opacity-80 overflow-hidden relative cursor-pointer  transition duration-300 ease-in-out hover:opacity-100;
+  @apply inline-block w-56 h-72 rounded-xl shadow-xl opacity-80 overflow-hidden relative cursor-pointer  transition duration-300 ease-in-out hover:opacity-100;
 }
 </style>

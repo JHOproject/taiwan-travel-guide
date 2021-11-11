@@ -5,7 +5,7 @@
     >
       <img
         src="@/assets/img/utils/logo_light.png"
-        class="w-40 h-10"
+        class="inline-block w-40 h-10"
         alt="logo_light"
       />
       <LinkBar class="text-light-grey"></LinkBar>

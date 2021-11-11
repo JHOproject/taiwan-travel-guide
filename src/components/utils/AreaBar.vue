@@ -3,7 +3,7 @@
     <img
       src="@/assets/img/utils/back_packer.png"
       alt="背包客"
-      class="w-36 h-36 absolute left-10 bottom-3"
+      class="inline-block w-36 h-36 absolute left-10 bottom-3"
     />
     <TitleBar
       title="縣市快選"

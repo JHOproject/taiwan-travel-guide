@@ -1,7 +1,7 @@
 <template>
   <div class="buttonGroup">
-    <button class="imgWrap w-20 h-20 mb-2 bg-light-green rounded-full">
-      <img :src="src" :alt="alt" class="w-12 h-12 m-auto" />
+    <button class="inline-block w-20 h-20 mb-2 bg-gradient-green rounded-full">
+      <img :src="src" :alt="alt" class="inline-block w-12 h-12 m-auto" />
     </button>
     <span>{{ alt }}</span>
   </div>

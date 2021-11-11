@@ -4,7 +4,7 @@
       <img
         :src="item.Picture.PictureUrl1"
         :alt="item.Picture.PictureDescription1"
-        class="w-full min-h-full max-w-none fitImg"
+        class="inline-block w-full min-h-full max-w-none"
       />
     </div>
     <div class="py-4 px-4">
