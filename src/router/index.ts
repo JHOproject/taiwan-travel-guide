@@ -38,6 +38,12 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Activity.vue'),
   },
+  {
+    path: '/quickPick',
+    name: 'QuickPick',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/QuickPick.vue'),
+  },
 ]
 
 const router = new VueRouter({

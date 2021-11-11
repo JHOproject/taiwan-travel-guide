@@ -1,7 +1,7 @@
 <template>
   <div class="buttonGroup">
-    <button class="imgWrap rounded-full w-20 h-20 mb-2">
-      <img :src="src" :alt="alt" class="w-12 h-12 m-auto" />
+    <button class="inline-block w-20 h-20 mb-2 bg-gradient-green rounded-full">
+      <img :src="src" :alt="alt" class="inline-block w-12 h-12 m-auto" />
     </button>
     <span>{{ alt }}</span>
   </div>
@@ -21,9 +21,9 @@ export default class AreaBtn extends Vue {
 
 <style scoped>
 .buttonGroup {
-  @apply flex flex-col justify-center items-center w-28 h-36 pt-5 rounded-2xl shadow-xl cursor-pointer;
+  @apply flex flex-col justify-center items-center w-28 h-36 pt-5 bg-white rounded-2xl shadow-xl cursor-pointer transition duration-300 ease-in-out hover:bg-dark  hover:text-white;
 }
-.imgWrap {
-  background: linear-gradient(155.4deg, #78e389 0.2%, #1eb893 90.81%);
+.buttonGroup.active {
+  @apply bg-dark text-white;
 }
 </style>
