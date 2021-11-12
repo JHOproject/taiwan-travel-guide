@@ -7,7 +7,7 @@
       <p class="inline-block text-2xl font-bold ml-5">餐飲美食</p>
     </div>
 
-    <div class="w-11/12 mx-auto relative">
+    <div v-if="list && endIndex" class="w-11/12 mx-auto relative">
       <ImageCard
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
@@ -51,7 +51,7 @@ export default class QuickpickFoodBlock extends Vue {
   list: IRestaurantInfoItem[] = []
 
   @Watch('city')
-  cityNameChange() {
+  cityChange() {
     this.init()
     this.getCityRestaurantList()
   }

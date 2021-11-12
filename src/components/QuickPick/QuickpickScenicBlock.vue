@@ -7,7 +7,7 @@
       <p class="inline-block text-2xl font-bold ml-5">景點介紹</p>
     </div>
 
-    <div class="relative">
+    <div v-if="list && endIndex" class="relative">
       <InfoCard
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
@@ -52,7 +52,7 @@ export default class QuickpickScenicBlock extends Vue {
   list: IScenicSpotInfoItem[] = []
 
   @Watch('city')
-  cityNameChange() {
+  cityChange() {
     this.init()
     this.getCityScenicSpotList()
   }

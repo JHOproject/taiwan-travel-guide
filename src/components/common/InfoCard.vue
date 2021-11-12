@@ -24,7 +24,7 @@
             item.Name.length > 12 ? item.Name.slice(0, 11) + '...' : item.Name
           }}
         </p>
-        <p class="text-xs text-gray-400">
+        <p v-if="description" class="text-xs text-gray-400">
           {{
             description.length > 30
               ? description.slice(0, 29) + ' ...'

@@ -7,7 +7,7 @@
       <p class="inline-block text-2xl font-bold ml-5">特色活動</p>
     </div>
 
-    <div class="relative">
+    <div v-if="list && endIndex" class="relative">
       <InfoCard
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
@@ -53,7 +53,7 @@ export default class QuickpickActivityBlock extends Vue {
   list: IActivityInfoItem[] = []
 
   @Watch('city')
-  cityNameChange() {
+  cityChange() {
     this.init()
     this.getCityActivityList()
   }

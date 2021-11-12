@@ -7,7 +7,7 @@
       <p class="inline-block text-2xl font-bold ml-5">優質住宿</p>
     </div>
 
-    <div class="relative">
+    <div v-if="list && endIndex" class="relative">
       <InfoCard
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
@@ -53,7 +53,7 @@ export default class Quickpick extends Vue {
   list: IHotelInfoItem[] = []
 
   @Watch('city')
-  cityNameChange() {
+  cityChange() {
     this.init()
     this.getCityHotelList()
   }
