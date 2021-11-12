@@ -33,7 +33,14 @@
       { "value": "LienchiangCounty", "text": "連江縣" }
     ]
   },
-  "list": [
+  "areaList": [
+    { "value": "north", "text": "北部" },
+    { "value": "mid", "text": "中部" },
+    { "value": "south", "text": "南部" },
+    { "value": "east", "text": "東部" },
+    { "value": "island", "text": "離島" }
+  ],
+  "cityList": [
     { "value": "Taipei", "text": "臺北市" },
     { "value": "NewTaipei", "text": "新北市" },
     { "value": "Keelung", "text": "基隆市" },
