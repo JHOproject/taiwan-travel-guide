@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <router-view />
+    <transition name="page">
+      <router-view />
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -14,7 +16,7 @@ import Footer from '@/components/utils/Footer.vue'
 @Component({
   components: { Header, Footer },
 })
-export default class OverView extends Vue {}
+export default class App extends Vue {}
 </script>
 
 <style lang="sass"></style>
