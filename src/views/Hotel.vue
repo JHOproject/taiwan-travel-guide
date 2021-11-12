@@ -131,6 +131,7 @@ export default class Hotel extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
   onPageChange(page: number) {

@@ -80,6 +80,7 @@ export default class QuickpickScenicBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

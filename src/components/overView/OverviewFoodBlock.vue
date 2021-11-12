@@ -101,6 +101,7 @@ export default class OverviewFoodBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

@@ -79,6 +79,7 @@ export default class QuickpickFoodBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

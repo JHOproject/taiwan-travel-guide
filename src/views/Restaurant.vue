@@ -131,6 +131,7 @@ export default class Restaurant extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

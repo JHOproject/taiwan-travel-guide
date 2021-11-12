@@ -81,6 +81,7 @@ export default class Quickpick extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

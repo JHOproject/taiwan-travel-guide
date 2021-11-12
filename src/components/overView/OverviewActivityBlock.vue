@@ -60,6 +60,7 @@ export default class OverviewActivityBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

@@ -74,6 +74,7 @@ export default class OverviewHotelBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

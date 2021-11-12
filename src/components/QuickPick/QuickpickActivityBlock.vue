@@ -81,6 +81,7 @@ export default class QuickpickActivityBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 

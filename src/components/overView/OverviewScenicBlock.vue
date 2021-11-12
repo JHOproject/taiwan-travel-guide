@@ -81,6 +81,7 @@ export default class OverviewScenicBlock extends Vue {
       })
       .catch((res) => {
         console.log(res)
+        this.list = []
       })
   }
 
