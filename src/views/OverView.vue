@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-full h-full relative">
+    <div class="w-full h-full min-h-full relative">
       <img
         src="@/assets/img/overView/landing.jpg"
         alt="landing"
