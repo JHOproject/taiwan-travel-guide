@@ -64,7 +64,6 @@ const cityData = require('@/setting/city.json')
   },
 })
 export default class QuickPick extends Vue {
-  cityName = ''
   cityList: ISelect[] = []
 
   get area(): string {
@@ -73,18 +72,16 @@ export default class QuickPick extends Vue {
   get city(): string {
     return <string>this.$route.query.city || ''
   }
+  get cityName(): string {
+    return this.cityList.find((x) => x.value === this.city)?.text || ''
+  }
 
   mounted() {
+    this.setCityList()
+  }
+
+  setCityList() {
     this.cityList = cityData.levelData[this.area]
-    this.cityName = this.cityList.find((x) => x.value === this.city)?.text || ''
-  }
-
-  onAreaChange({ text }: { text: string }) {
-    this.cityName = text
-  }
-
-  onCityChange(text: string) {
-    this.cityName = text
   }
 }
 </script>
