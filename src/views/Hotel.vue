@@ -8,7 +8,7 @@
     ></AreaHorizontalBar>
 
     <div
-      v-if="list && endIndex"
+      v-if="list && list.length && endIndex"
       class="flex flex-wrap justify-center w-10/12 mx-auto"
     >
       <InfoCard
@@ -20,9 +20,10 @@
         class="mx-3"
       ></InfoCard>
     </div>
+    <div v-else class="noData block"></div>
 
     <div
-      v-if="list && endIndex"
+      v-if="list && list.length && endIndex"
       class="flex justify-center w-10/12 mx-auto my-12"
     >
       <PaginationBar

@@ -29,3 +29,27 @@ body::-webkit-scrollbar-thumb {
 .fitImg {
   @apply absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4;
 }
+
+.noData {
+  position: relative;
+  width: 100%;
+}
+
+.noData::before {
+  content: '目前沒有內容';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-style: italic;
+  color: #aaa;
+}
+
+.noData.small::before {
+  min-height: 80px;
+}
+
+.noData.block::before {
+  min-height: 40px;
+  content: '這個區塊目前沒有內容';
+}

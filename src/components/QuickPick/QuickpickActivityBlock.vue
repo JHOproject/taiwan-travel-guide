@@ -7,7 +7,7 @@
       <p class="inline-block text-2xl font-bold ml-5">特色活動</p>
     </div>
 
-    <div v-if="list && endIndex" class="relative">
+    <div v-if="list && list.length && endIndex" class="relative">
       <InfoCard
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
@@ -28,6 +28,7 @@
         @click.native.stop="slideTo(SHOW_COUNT)"
       ></RoundedBtn>
     </div>
+    <div v-else class="noData block"></div>
   </div>
 </template>
 
