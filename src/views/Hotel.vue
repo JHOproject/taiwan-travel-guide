@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto">
-    <p class="text-3xl font-bold mt-20 w-10/12 mx-auto">熱門住宿</p>
+    <p class="text-3xl font-bold mt-8 w-10/12 mx-auto">熱門住宿</p>
     <AreaHorizontalBar
-      class="my-12"
+      class="my-5"
       @onAreaChange="onAreaChange"
       @onCityChange="onAreaChange"
     ></AreaHorizontalBar>

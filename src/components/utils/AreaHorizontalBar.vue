@@ -86,7 +86,7 @@ export default class AreaHorizontalBar extends Vue {
 
 <style scoped>
 .chipGroup {
-  @apply flex flex-wrap w-1/4 border-r-2 border-deepGray py-8;
+  @apply flex flex-wrap w-1/4 border-r-2 border-deepGray py-2;
 }
 .chipGroup > .active {
   @apply bg-emerald text-white;
