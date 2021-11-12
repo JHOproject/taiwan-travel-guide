@@ -57,13 +57,60 @@ import Chip from '@/components/common/Chip.vue'
 import RoundedBtn from '@/components/common/RoundedBtn.vue'
 
 import { IRestaurantInfoItem } from '@/models/TourismDTO'
+import { ISelect } from '@/models/common/FormDTO'
+import { getCityRestaurantList } from '@/api/getTourismList'
+import { IResponse } from '@/models/common/ResponseDTO'
 
 @Component({
   components: { TitleBar, ImageCard, Chip, RoundedBtn },
 })
 export default class OverviewFoodBlock extends Vue {
-  @Prop() list!: IRestaurantInfoItem[]
+  @Prop() cityList!: ISelect[]
+
   translateX = 0
+  restaurantIndex = 0
+  list: IRestaurantInfoItem[] = []
+
+  getCityRestaurantList(params: string, reset = false) {
+    if (!params) return
+
+    reset && (this.list = [])
+    getCityRestaurantList(params)
+      .then(({ status, data }: IResponse<IRestaurantInfoItem[]>) => {
+        if (status === 200) {
+          this.list = this.list
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 16),
+            )
+            .slice(0, 16)
+          this.restaurantIndex += 1
+
+          setTimeout(() => {
+            if (!this.cityList) return
+            this.list.length < 16 &&
+              this.cityList[this.restaurantIndex] &&
+              this.getCityRestaurantList(
+                this.cityList[this.restaurantIndex].value,
+              )
+          })
+        } else {
+          console.log(data)
+        }
+      })
+      .catch((res) => {
+        console.log(res)
+      })
+  }
+
+  getData(reset = false) {
+    this.cityList[this.restaurantIndex] &&
+      this.getCityRestaurantList(
+        this.cityList[this.restaurantIndex].value,
+        reset,
+      )
+  }
 
   slideTo(director: number) {
     if (!this.$refs.ImageCardSlider || !(<any>this.$refs.ImageCardSlider).style)
@@ -78,6 +125,10 @@ export default class OverviewFoodBlock extends Vue {
     ;(<any>(
       this.$refs.ImageCardSlider
     )).style.transform = `translateX(${this.translateX}px)`
+  }
+
+  initIndex() {
+    this.restaurantIndex = 0
   }
 
   init() {

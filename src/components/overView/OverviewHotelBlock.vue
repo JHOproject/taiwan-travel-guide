@@ -32,13 +32,59 @@ import TitleBar from '@/components/utils/TitleBar.vue'
 import InfoCard from '@/components/common/InfoCard.vue'
 import Chip from '@/components/common/Chip.vue'
 
-import { IActivityInfoItem } from '@/models/TourismDTO'
+import { IHotelInfoItem } from '@/models/TourismDTO'
+import { getCityHotelList } from '@/api/getTourismList'
+import { IResponse } from '@/models/common/ResponseDTO'
+import { ISelect } from '@/models/common/FormDTO'
 
 @Component({
   components: { TitleBar, InfoCard, Chip },
 })
 export default class OverviewHotelBlock extends Vue {
-  @Prop() list!: IActivityInfoItem[]
+  @Prop() cityList!: ISelect[]
+
+  hotelIndex = 0
+  list: IHotelInfoItem[] = []
+
+  getCityHotelList(params: string, reset = false) {
+    if (!params) return
+
+    reset && (this.list = [])
+    getCityHotelList(params)
+      .then(({ status, data }: IResponse<IHotelInfoItem[]>) => {
+        if (status === 200) {
+          this.list = this.list
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 4),
+            )
+            .slice(0, 4)
+          this.hotelIndex += 1
+
+          setTimeout(() => {
+            if (!this.cityList) return
+            this.list.length < 4 &&
+              this.cityList[this.hotelIndex] &&
+              this.getCityHotelList(this.cityList[this.hotelIndex].value)
+          })
+        } else {
+          console.log(data)
+        }
+      })
+      .catch((res) => {
+        console.log(res)
+      })
+  }
+
+  getData(reset = false) {
+    this.cityList[this.hotelIndex] &&
+      this.getCityHotelList(this.cityList[this.hotelIndex].value, reset)
+  }
+
+  initIndex() {
+    this.hotelIndex = 0
+  }
 }
 </script>
 

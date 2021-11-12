@@ -38,11 +38,62 @@ import InfoCard from '@/components/common/InfoCard.vue'
 import Chip from '@/components/common/Chip.vue'
 
 import { IScenicSpotInfoItem } from '@/models/TourismDTO'
+import { IResponse } from '@/models/common/ResponseDTO'
+import { getCityScenicSpotList } from '@/api/getTourismList'
+import { ISelect } from '@/models/common/FormDTO'
 
 @Component({
   components: { TitleBar, InfoCard, Chip },
 })
 export default class OverviewScenicBlock extends Vue {
-  @Prop() list!: IScenicSpotInfoItem[]
+  @Prop() cityList!: ISelect[]
+
+  scenicSpotIndex = 0
+  list: IScenicSpotInfoItem[] = []
+
+  getCityScenicSpotList(params: string, reset = false) {
+    if (!params) return
+
+    reset && (this.list = [])
+    getCityScenicSpotList(params)
+      .then(({ status, data }: IResponse<IScenicSpotInfoItem[]>) => {
+        if (status === 200) {
+          this.list = this.list
+            .concat(
+              data
+                .filter((x) => !!x.Picture && !!x.Picture.PictureUrl1)
+                .slice(0, 3),
+            )
+            .slice(0, 3)
+          this.scenicSpotIndex += 1
+
+          setTimeout(() => {
+            if (!this.cityList) return
+            this.list.length < 3 &&
+              this.cityList[this.scenicSpotIndex] &&
+              this.getCityScenicSpotList(
+                this.cityList[this.scenicSpotIndex].value,
+              )
+          })
+        } else {
+          console.log(data)
+        }
+      })
+      .catch((res) => {
+        console.log(res)
+      })
+  }
+
+  getData(reset = false) {
+    this.cityList[this.scenicSpotIndex] &&
+      this.getCityScenicSpotList(
+        this.cityList[this.scenicSpotIndex].value,
+        reset,
+      )
+  }
+
+  initIndex() {
+    this.scenicSpotIndex = 0
+  }
 }
 </script>
