@@ -52,7 +52,16 @@ const router = new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     // return desired position
-    return { x: 0, y: 0 }
+    if (
+      to.name === 'OverView' &&
+      from.name === 'OverView' &&
+      from.fullPath !== '/' &&
+      to.fullPath !== from.fullPath
+    ) {
+      return { x: 0, y: 650 }
+    } else {
+      return { x: 0, y: 0 }
+    }
   },
 })
 
