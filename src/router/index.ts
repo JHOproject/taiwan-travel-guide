@@ -58,9 +58,16 @@ const router = new VueRouter({
       from.fullPath !== '/' &&
       to.fullPath !== from.fullPath
     ) {
-      return { x: 0, y: 650 }
+      return { x: 0, y: 650, behavior: 'smooth' }
+    } else if (
+      to.name === 'QuickPick' &&
+      from.name === 'QuickPick' &&
+      from.fullPath !== '/' &&
+      to.fullPath !== from.fullPath
+    ) {
+      return { x: 0, y: 300, behavior: 'smooth' }
     } else {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0, behavior: 'smooth' }
     }
   },
 })
