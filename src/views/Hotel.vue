@@ -7,20 +7,26 @@
       @onCityChange="onAreaChange"
     ></AreaHorizontalBar>
 
+    <transition name="fade">
+      <div
+        v-if="!loading && list && list.length && endIndex"
+        class="flex flex-wrap justify-center w-10/12 mx-auto"
+      >
+        <InfoCard
+          v-for="(item, index) in list.slice(startIndex, endIndex)"
+          :item="item"
+          :description="item.DescriptionDetail"
+          :classify="item.Class1"
+          :key="index"
+          class="mx-3"
+        ></InfoCard>
+      </div>
+    </transition>
+
     <div
-      v-if="list && list.length && endIndex"
-      class="flex flex-wrap justify-center w-10/12 mx-auto"
-    >
-      <InfoCard
-        v-for="(item, index) in list.slice(startIndex, endIndex)"
-        :item="item"
-        :description="item.DescriptionDetail"
-        :classify="item.Class1"
-        :key="index"
-        class="mx-3"
-      ></InfoCard>
-    </div>
-    <div v-else class="noData block"></div>
+      v-if="loading || !list || !list.length || !endIndex"
+      class="noData block"
+    ></div>
 
     <div
       v-if="list && list.length && endIndex"
@@ -59,6 +65,8 @@ const cityData = require('@/setting/city.json')
   },
 })
 export default class Hotel extends Vue {
+  loading = false
+
   SHOW_COUNT = 12
   startIndex = 0
   endIndex = 0
@@ -143,8 +151,13 @@ export default class Hotel extends Vue {
   }
 
   onAreaChange() {
+    this.loading = true
     this.cityList = cityData.levelData[this.area]
     ;(<PaginationBar>this.$refs.PaginationBar).init()
+
+    setTimeout(() => {
+      this.loading = false
+    }, 100)
   }
 
   init() {
@@ -153,4 +166,19 @@ export default class Hotel extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
+}
+</style>
 
