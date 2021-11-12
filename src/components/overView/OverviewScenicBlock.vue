@@ -19,13 +19,13 @@
         text="更多景點"
         class="mb-5 ml-10 text-white"
         bgColor="bg-gradient-green"
-        @click.native="$router.push('/ScenicSpot')"
+        @click.native="$router.push('/scenicSpot')"
       ></Chip>
       <Chip
         text="更多 FUNNY"
         class="ml-10 text-white"
         bgColor="bg-gradient-green"
-        @click.native="$router.push('/Activity')"
+        @click.native="$router.push('/activity')"
       ></Chip>
     </div>
   </div>
