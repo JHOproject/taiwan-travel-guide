@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <transition name="page">
-      <router-view />
+      <router-view class="view" />
     </transition>
     <Footer></Footer>
   </div>
@@ -19,4 +19,15 @@ import Footer from '@/components/utils/Footer.vue'
 export default class App extends Vue {}
 </script>
 
-<style lang="sass"></style>
+<style lang="css">
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.view {
+  flex-grow: 1;
+  min-height: 50%;
+}
+</style>
