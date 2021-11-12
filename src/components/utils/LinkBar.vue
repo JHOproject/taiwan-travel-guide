@@ -1,9 +1,13 @@
 <template>
   <div class="linkGroup">
-    <router-link to="/ScenicSpot">景點</router-link>
-    <router-link to="/activity">活動</router-link>
-    <router-link to="/restaurant">美食</router-link>
-    <router-link to="/hotel">住宿</router-link>
+    <router-link to="/ScenicSpot?area=north&city=Taipei&page=1"
+      >景點</router-link
+    >
+    <router-link to="/activity?area=north&city=Taipei&page=1">活動</router-link>
+    <router-link to="/restaurant?area=north&city=Taipei&page=1"
+      >美食</router-link
+    >
+    <router-link to="/hotel?area=north&city=Taipei&page=1">住宿</router-link>
   </div>
 </template>
 
