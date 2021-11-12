@@ -4,8 +4,14 @@
       v-for="(item, index) in list"
       :key="index"
       :text="item.text"
-      :class="{ active: needActiveSet && item.value === $route.query.city }"
-      class="text-base text-dark hover:bg-dark hover:text-white mx-1"
+      :class="{
+        activeDark:
+          needActiveSet && !isLightMode && item.value === $route.query.city,
+        activeLight:
+          needActiveSet && isLightMode && item.value === $route.query.city,
+      }"
+      :hover="hover"
+      class="text-base text-dark mx-1"
       bgColor="bg-none"
       @click.native="$emit('onClick', item)"
     ></Chip>
@@ -23,6 +29,12 @@ import { ISelect } from '@/models/common/FormDTO'
 export default class AreaSubBtn extends Vue {
   @Prop() list!: ISelect[]
   @Prop() active!: string
+  @Prop({ default: false }) light?: boolean | string | undefined
+  @Prop({ default: 'hover:bg-dark hover:text-white' }) hover?: string
+
+  get isLightMode() {
+    return typeof this.light === 'string' || this.light
+  }
 
   get needActiveSet() {
     return this.$route.name !== 'OverView'
@@ -32,9 +44,12 @@ export default class AreaSubBtn extends Vue {
 
 <style scoped>
 .subButtonGroup {
-  @apply container flex justify-center mx-auto absolute -bottom-1/2;
+  @apply flex;
 }
-.subButtonGroup > .active {
+.subButtonGroup > .activeDark {
   @apply bg-dark text-white;
+}
+.subButtonGroup > .activeLight {
+  @apply bg-white;
 }
 </style>
