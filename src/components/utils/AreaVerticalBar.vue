@@ -1,5 +1,5 @@
 <template>
-  <div class="flex relative">
+  <div class="flex justify-center relative">
     <AreaBtn
       v-for="item in imgList"
       :key="item.key"
@@ -13,6 +13,7 @@
     <AreaSubBtn
       :list="cityList"
       :active="active"
+      class="justify-center mx-auto absolute -bottom-1/2"
       @onClick="onCityChange"
     ></AreaSubBtn>
   </div>
@@ -34,7 +35,7 @@ const cityData = require('@/setting/city.json')
     TitleBar,
   },
 })
-export default class AreaBar extends Vue {
+export default class AreaVerticalBar extends Vue {
   active = ''
   cityList: ISelect[] = []
 

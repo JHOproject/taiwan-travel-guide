@@ -9,11 +9,11 @@
     <div class="flex flex-col justify-center items-center mb-32">
       <TitleBar title="縣市快選" class="mx-auto mt-20 mb-12"></TitleBar>
 
-      <AreaBar
+      <AreaVerticalBar
         :city="city"
-        @onAreaChange="onAreaChange"
-        @onCityChange="onCityChange"
-      ></AreaBar>
+        @onAreaChange="setCityList"
+        @onCityChange="setCityList"
+      ></AreaVerticalBar>
     </div>
 
     <QuickpickScenicBlock
@@ -38,7 +38,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import TitleBar from '@/components/utils/TitleBar.vue'
-import AreaBar from '@/components/utils/AreaBar.vue'
+import AreaVerticalBar from '@/components/utils/AreaVerticalBar.vue'
 import InfoCard from '@/components/common/InfoCard.vue'
 import RoundedBtn from '@/components/common/RoundedBtn.vue'
 
@@ -54,7 +54,7 @@ const cityData = require('@/setting/city.json')
 @Component({
   components: {
     TitleBar,
-    AreaBar,
+    AreaVerticalBar,
     InfoCard,
     RoundedBtn,
     QuickpickScenicBlock,

@@ -10,17 +10,20 @@
       subTitle="Choose Cities"
       class="mr-16"
     ></TitleBar>
-    <AreaBar :city="city" @onAreaChange="onAreaChange"></AreaBar>
+    <AreaVerticalBar
+      :city="city"
+      @onAreaChange="onAreaChange"
+    ></AreaVerticalBar>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import TitleBar from '@/components/utils/TitleBar.vue'
-import AreaBar from '@/components/utils/AreaBar.vue'
+import AreaVerticalBar from '@/components/utils/AreaVerticalBar.vue'
 
 @Component({
-  components: { TitleBar, AreaBar },
+  components: { TitleBar, AreaVerticalBar },
 })
 export default class OverviewAreaBlock extends Vue {
   get city(): string {
