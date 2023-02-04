@@ -14,6 +14,7 @@
         :description="item.DescriptionDetail"
         :classify="item.Class1"
         :key="index"
+        datakeyName="ScenicSpotName"
         class="mx-3"
       ></InfoCard>
       <RoundedBtn

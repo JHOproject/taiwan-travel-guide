@@ -13,6 +13,7 @@
         :classify="item.Class"
         :key="index"
         :class="{ 'transform translate-y-4': index % 2 !== 0 }"
+        datakeyName="HotelName"
         class="mx-3"
         bgColor="bg-gray-200"
       ></InfoCard>

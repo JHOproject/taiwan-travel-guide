@@ -31,6 +31,7 @@
           v-for="(item, index) in list"
           :item="item"
           :key="index"
+          datakeyName="RestaurantName"
           class="mr-6"
           ref="ImageCard"
         ></ImageCard>

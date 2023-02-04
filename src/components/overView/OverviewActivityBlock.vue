@@ -7,6 +7,7 @@
       :classify="item.Class1"
       :subClassify="item.Class2"
       :key="index"
+      datakeyName="ActivityName"
       class="mx-3"
     ></InfoCard>
   </div>

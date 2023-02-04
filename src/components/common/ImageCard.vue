@@ -18,7 +18,7 @@
     </div>
     <div class="flex flex-col justify-end w-full h-full relative z-10">
       <p class="px-5 py-2 text-white font-bold bg-lightDark">
-        {{ item.Name.length > 9 ? item.Name.slice(0, 9) + '...' : item.Name }}
+        {{ displayName }}
       </p>
       <div class="flex justify-between items-center px-5 py-2 bg-lightDark">
         <p class="text-xs text-white">
@@ -33,16 +33,37 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import Chip from '@/components/common/Chip.vue'
-import { IRestaurantInfoItem } from '@/models/TourismDTO'
+
+import {
+  DataKeyName,
+  IActivityInfoItem,
+  IHotelInfoItem,
+  IRestaurantInfoItem,
+  IScenicSpotInfoItem,
+} from '@/models/TourismDTO'
 
 @Component({
   components: { Chip },
 })
 export default class ImageCard extends Vue {
-  @Prop() readonly item!: IRestaurantInfoItem
+  @Prop() readonly item!: IScenicSpotInfoItem &
+    IRestaurantInfoItem &
+    IHotelInfoItem &
+    IActivityInfoItem
+  @Prop() readonly datakeyName!: DataKeyName
 
   get hasImage() {
     return !!this.item.Picture && !!this.item.Picture.PictureUrl1
+  }
+
+  get dataName() {
+    return this.item[this.datakeyName] || ''
+  }
+
+  get displayName() {
+    return this.dataName?.length > 9
+      ? this.dataName?.slice(0, 9) + '...'
+      : this.dataName
   }
 }
 </script>

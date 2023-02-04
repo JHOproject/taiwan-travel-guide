@@ -20,9 +20,7 @@
     <div class="h-36 flex flex-col justify-between py-4 px-4">
       <div>
         <p class="font-bold">
-          {{
-            item.Name.length > 12 ? item.Name.slice(0, 11) + '...' : item.Name
-          }}
+          {{ displayName }}
         </p>
         <p v-if="description" class="text-xs text-gray-400">
           {{
@@ -45,11 +43,21 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import Chip from '@/components/common/Chip.vue'
 
-import { IScenicSpotInfoItem } from '@/models/TourismDTO'
+import {
+  DataKeyName,
+  IActivityInfoItem,
+  IHotelInfoItem,
+  IRestaurantInfoItem,
+  IScenicSpotInfoItem,
+} from '@/models/TourismDTO'
 
 @Component({ components: { Chip } })
 export default class InfoCard extends Vue {
-  @Prop() readonly item!: IScenicSpotInfoItem
+  @Prop() readonly item!: IScenicSpotInfoItem &
+    IRestaurantInfoItem &
+    IHotelInfoItem &
+    IActivityInfoItem
+  @Prop() readonly datakeyName!: DataKeyName
   @Prop() readonly description!: string
   @Prop() readonly classify!: string
   @Prop({ default: '' }) readonly subClassify?: string
@@ -57,6 +65,16 @@ export default class InfoCard extends Vue {
 
   get hasImage() {
     return !!this.item.Picture && !!this.item.Picture.PictureUrl1
+  }
+
+  get dataName() {
+    return this.item[this.datakeyName] || ''
+  }
+
+  get displayName() {
+    return this.dataName?.length > 12
+      ? this.dataName?.slice(0, 11) + '...'
+      : this.dataName
   }
 }
 </script>

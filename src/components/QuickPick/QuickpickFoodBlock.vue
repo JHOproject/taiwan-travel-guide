@@ -15,6 +15,7 @@
         v-for="(item, index) in list.slice(startIndex, endIndex)"
         :item="item"
         :key="index"
+        datakeyName="RestaurantName"
         class="mx-3"
         ref="ImageCard"
       ></ImageCard>

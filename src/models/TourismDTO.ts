@@ -5,8 +5,8 @@ import { IPosition } from './common/PositionDTO'
  * 觀光景點資料
  */
 export interface IScenicSpotInfoItem {
-  ID: string // (String) 景點代碼
-  Name?: string // (String, optional) 景點名稱
+  ScenicSpotID: string // (String) 景點代碼
+  ScenicSpotName?: string // (String, optional) 景點名稱
   DescriptionDetail?: string // (String, optional) 景點特色詳細說明
   Description?: string // (String, optional) 景點特色精簡說明
   Phone?: string // (String, optional) 景點服務電話
@@ -36,8 +36,8 @@ export interface IScenicSpotInfoItem {
  * 觀光餐飲資料
  */
 export interface IRestaurantInfoItem {
-  ID: string // (String): 餐飲店家代碼 ,
-  Name?: string // (String, optional): 餐飲店家名稱 ,
+  RestaurantID: string // (String): 餐飲店家代碼 ,
+  RestaurantName?: string // (String, optional): 餐飲店家名稱 ,
   Description?: string // (String, optional): 店家簡述 ,
   Address?: string // (String, optional): 店家地址 ,
   ZipCode?: string // (String, optional): 郵遞區號 ,
@@ -58,8 +58,8 @@ export interface IRestaurantInfoItem {
  * 觀光旅宿資料
  */
 export interface IHotelInfoItem {
-  ID: string // (String): 旅館民宿代碼 ,
-  Name?: string // (String, optional): 旅館民宿名稱 ,
+  HotelID: string // (String): 旅館民宿代碼 ,
+  HotelName?: string // (String, optional): 旅館民宿名稱 ,
   Description?: string // (String, optional): 旅館民宿簡述 ,
   Grade?: string // (String, optional): 觀光旅館星級 ,
   Address?: string // (String, optional): 旅館民宿地址 ,
@@ -83,8 +83,8 @@ export interface IHotelInfoItem {
  * 觀光活動資料
  */
 export interface IActivityInfoItem {
-  ID: string // (String): 活動訊息代碼 ,
-  Name?: string // (String, optional): 活動名稱 ,
+  ActivityID: string // (String): 活動訊息代碼 ,
+  ActivityName?: string // (String, optional): 活動名稱 ,
   Description?: string // (String, optional): 活動簡述 ,
   Particpation?: string // (String, optional): 活動參與對象 ,
   Location?: string // (String, optional): 主要活動地點名稱 ,
@@ -108,3 +108,9 @@ export interface IActivityInfoItem {
   City?: string // (String, optional): 所屬縣市 ,
   SrcUpdateTime: string // (string): 觀光局檔案更新時間(ISO8601格式:yyyy-MM-ddTHH:mm:sszzz
 }
+
+export type DataKeyName =
+  | 'ScenicSpotName'
+  | 'RestaurantName'
+  | 'HotelName'
+  | 'ActivityName'

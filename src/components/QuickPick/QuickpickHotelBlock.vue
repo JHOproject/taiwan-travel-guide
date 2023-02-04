@@ -15,6 +15,7 @@
         :classify="item.Class1"
         :subClassify="item.Class2"
         :key="index"
+        datakeyName="HotelName"
         class="mx-3"
       ></InfoCard>
       <RoundedBtn
