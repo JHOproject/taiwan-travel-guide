@@ -155,7 +155,7 @@ export default class Restaurant extends Vue {
   onAreaChange() {
     this.loading = true
     this.cityList = cityData.levelData[this.area]
-    ;(<PaginationBar>this.$refs.PaginationBar).init()
+    ;(<PaginationBar>this.$refs.PaginationBar)?.init()
 
     setTimeout(() => {
       this.loading = false

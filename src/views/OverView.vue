@@ -82,7 +82,7 @@ export default class OverView extends Vue {
     this.active = area
     this.cityList = cityData.levelData[area]
     this.getData(true)
-    ;(<OverviewFoodBlock>this.$refs.OverviewFoodBlock).init()
+    ;(<OverviewFoodBlock>this.$refs.OverviewFoodBlock)?.init()
   }
 
   initIndex() {
