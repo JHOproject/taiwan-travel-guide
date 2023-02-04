@@ -1,23 +1,18 @@
-# taiwan-travel-guide
+台灣旅遊景點導覽 | Demo
+參加 The F2E 3rd 前端修練精神時光屋
+技術 VueCLI、Vuex、TypeScript、TailwindCSS、Axios
 
-## Project setup
+Introduction
+ 使用 Vue 介接 TDX 運輸資料流通服務 API，實作臺灣旅遊景點導覽功能。
 
-```
-npm install
-```
+Features
+ 臺灣地區篩選下拉功能
+ 各地區風景區列表
+ 各地區餐飲列表
+ 各地區旅宿列表
+ RWD 版面樣式（開發中）
+ 讀取更多功能（開發中）
+ 搜尋關鍵字功能（開發中）
 
-### Compiles and hot-reloads for development
 
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
